@@ -1,0 +1,12 @@
+[Http]
+Listen = :3001
+CookieSecret = youreallyshouldchangethis
+;Fcgi
+
+[PassPad]
+Workspace = ./
+OtpIssuer = ionDynamics.net
+;DevelopmentEnv
+
+[Logger]
+;SlackLogUrl = https://hooks.slack.com/services/1234/567/890

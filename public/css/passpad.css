@@ -1,0 +1,81 @@
+#clipboard-container {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 0px;
+	height: 0px;
+	z-index: 100;
+	display: none;
+	opacity: 0;
+}
+
+#clipboard {
+	width: 1px;
+	height: 1px;       
+	padding: 0px;
+}
+
+.clipboard-trigger {
+	min-width: 50px;
+	min-height: 50px;
+}
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	/* Margin bottom by footer height */
+	margin-bottom: 60px;
+}
+
+#main {
+	margin-top: 30px;
+}
+
+body > .container {
+	padding: 60px 15px 0;
+}
+
+.container .text-muted {
+	margin: 20px 0;
+}
+
+.footer > .container {
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.pp-login > button {
+	margin-top: 15px;
+	margin-bottom: 130px;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	background-color: #f5f5f5;
+}
+
+.pp-login {
+	margin: auto;
+	max-width: 420px;
+}
+
+.flashmessage {
+	background-color: lightyellow;
+	text-align: center;
+	width: 100%;
+	border: 2px solid;
+	border-radius: 25px;
+	border-color: yellow;
+}
+
+#nojs {
+	text-align: center;
+	font-weight: 700;
+}

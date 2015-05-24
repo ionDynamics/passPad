@@ -1,1 +1,2 @@
-# iDbar
+# passPad
+#### self-hosted password management
