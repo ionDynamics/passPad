@@ -34,6 +34,7 @@ func Run() {
 			Username:       "PassPad Log",
 		})
 	}
+
 	idl.StandardLogger().Async = true
 	idl.SetPrefix("PassPad")
 	idl.SetErrCallback(func(err error) {

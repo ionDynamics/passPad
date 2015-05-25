@@ -10,9 +10,11 @@ var Std *Config
 
 type Config struct {
 	Http struct {
-		CookieSecret string
-		Listen       string
-		Fcgi         bool
+		CookieSecret  string
+		CookieTimeout int
+		CookieSecure  bool
+		Listen        string
+		Fcgi          bool
 	}
 
 	PassPad struct {

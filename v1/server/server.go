@@ -27,6 +27,7 @@ func Listen() {
 	n := negroni.New(logger, negroni.NewStatic(http.Dir("public")))
 
 	cookiestore := cookiestore.New([]byte(config.Std.Http.CookieSecret))
+	cookiestore.Options(sessions.Options{MaxAge: config.Std.Http.CookieTimeout, Secure: config.Std.Http.CookieSecure})
 	n.Use(sessions.Sessions("id_padpass_session", cookiestore))
 	n.Use(negroni.HandlerFunc(preflight))
 
