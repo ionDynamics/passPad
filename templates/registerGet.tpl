@@ -1,5 +1,5 @@
 {{template "header" .}}
-	<form class="form-register pp-login" method="post" action="{{.Data.Action}}">
+	<form class="form-register pp-login" method="post" action="{{.Action}}">
 		<h2 class="form-register-heading">Registrieren</h2>
 		<label for="input-user" class="sr-only">E-Mail</label>
 		<input type="text" id="input-user" name="input-user" class="form-control" placeholder="E-Mail" required autofocus>

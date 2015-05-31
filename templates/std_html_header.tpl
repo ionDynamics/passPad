@@ -23,6 +23,9 @@
 		{{template "navigation" .}}		
 		<div id="clipboard-container"><textarea id="clipboard"></textarea></div>
 		<div class="container" id="main">
+		{{with .FlashMessage}}
+			<h2 class="flashmessage">{{.}}</h2>
+		{{end}}
 		<noscript>
 			<h1 id="nojs" class="alert alert-danger">
 				<span class="glyphicon glyphicon-warning-sign"></span>
