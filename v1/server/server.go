@@ -36,7 +36,7 @@ func Listen() {
 	if config.Std.Http.Fcgi {
 		listener, err := net.Listen("tcp", config.Std.Http.Listen)
 		if err != nil {
-			idl.Fatal(err)
+			idl.Emerg(err)
 		}
 		fcgi.Serve(listener, n)
 	} else {

@@ -4,13 +4,13 @@ import (
 	"time"
 
 	idl "go.iondynamics.net/iDlogger"
+	"go.iondynamics.net/iDlogger/priority"
+	"go.iondynamics.net/iDslackLog"
 	"go.iondynamics.net/passPad/v1/config"
 	"go.iondynamics.net/passPad/v1/filepath"
 	"go.iondynamics.net/passPad/v1/passpad/persistence"
 	"go.iondynamics.net/passPad/v1/server"
 	"go.iondynamics.net/passPad/v1/template"
-
-	"go.iondynamics.net/iDslackLog"
 )
 
 func Run() {
@@ -20,18 +20,18 @@ func Run() {
 	}()
 	if config.Std.Logger.SlackLogUrl != "" {
 
-		level := idl.WarnLevel
+		prio := priority.Warning
 		if config.Std.PassPad.DevelopmentEnv {
-			level = idl.DebugLevel
+			prio = priority.Debugging
 		}
 
 		idl.AddHook(&iDslackLog.SlackLogHook{
-			AcceptedLevels: iDslackLog.LevelThreshold(level),
-			HookURL:        config.Std.Logger.SlackLogUrl,
-			IconURL:        "",
-			Channel:        "",
-			IconEmoji:      "",
-			Username:       "PassPad Log",
+			AcceptedPriorities: priority.Threshold(prio),
+			HookURL:            config.Std.Logger.SlackLogUrl,
+			IconURL:            "",
+			Channel:            "",
+			IconEmoji:          "",
+			Username:           "PassPad Log",
 		})
 	}
 
@@ -45,7 +45,7 @@ func Run() {
 				"error": err,
 			},
 			time.Now(),
-			idl.PanicLevel,
+			priority.Emergency,
 			"Logger caught an internal error",
 		})
 		panic("Logger caught an internal error")

@@ -35,6 +35,6 @@ func init() {
 	err := gcfg.ReadFileInto(Std, *ConfigPath)
 
 	if err != nil {
-		iDlogger.Fatal("config: ", err)
+		iDlogger.Emerg("config: ", err)
 	}
 }
