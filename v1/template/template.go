@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"go.iondynamics.net/iDhelper/randGen"
-	"../passpad/account"
+	"go.iondynamics.net/passPad/v1/passpad/account"
 	"go.iondynamics.net/webapp"
 )
 

@@ -3,9 +3,9 @@ package routeHandler
 import (
 	"github.com/goincremental/negroni-sessions"
 	"github.com/gorilla/mux"
-	"../passpad"
-	"../passpad/lockdown"
-	"../template"
+	"go.iondynamics.net/passPad/v1/passpad"
+	"go.iondynamics.net/passPad/v1/passpad/lockdown"
+	"go.iondynamics.net/passPad/v1/template"
 	"go.iondynamics.net/webapp"
 	"net/http"
 	"net/mail"

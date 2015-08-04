@@ -11,8 +11,8 @@ import (
 	idl "go.iondynamics.net/iDlogger"
 	"go.iondynamics.net/iDnegroniLog"
 
-	"../config"
-	"../router"
+	"go.iondynamics.net/passPad/v1/config"
+	"go.iondynamics.net/passPad/v1/router"
 )
 
 func preflight(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
