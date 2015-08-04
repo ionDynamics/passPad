@@ -7,8 +7,8 @@ import (
 	"github.com/boltdb/bolt"
 	"go.iondynamics.net/iDhelper/crypto"
 	"go.iondynamics.net/iDlogger"
-	"go.iondynamics.net/passPad/v1/passpad/account"
-	"go.iondynamics.net/passPad/v1/passpad/vault"
+	"../account"
+	"../vault"
 )
 
 var db *bolt.DB

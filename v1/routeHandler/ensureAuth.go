@@ -2,8 +2,8 @@ package routeHandler
 
 import (
 	"github.com/goincremental/negroni-sessions"
-	"go.iondynamics.net/passPad/v1/passpad"
-	"go.iondynamics.net/passPad/v1/passpad/account"
+	"../passpad"
+	"../passpad/account"
 	"net/http"
 )
 

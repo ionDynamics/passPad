@@ -1,7 +1,7 @@
 package main
 
 import (
-	pp "go.iondynamics.net/passPad/v1"
+	pp "./v1"
 	"runtime"
 )
 

@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	handler "go.iondynamics.net/passPad/v1/routeHandler"
+	handler "../routeHandler"
 	"go.iondynamics.net/webapp"
 )
 

@@ -6,10 +6,10 @@ import (
 	"errors"
 	"github.com/pquerna/otp/totp"
 	"go.iondynamics.net/iDhelper/randGen"
-	"go.iondynamics.net/passPad/v1/config"
-	"go.iondynamics.net/passPad/v1/passpad/account"
-	"go.iondynamics.net/passPad/v1/passpad/persistence"
-	"go.iondynamics.net/passPad/v1/passpad/vault"
+	"../config"
+	"../passpad/account"
+	"../passpad/persistence"
+	"./vault"
 	"image/png"
 )
 

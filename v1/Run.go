@@ -6,11 +6,11 @@ import (
 	idl "go.iondynamics.net/iDlogger"
 	"go.iondynamics.net/iDlogger/priority"
 	"go.iondynamics.net/iDslackLog"
-	"go.iondynamics.net/passPad/v1/config"
-	"go.iondynamics.net/passPad/v1/filepath"
-	"go.iondynamics.net/passPad/v1/passpad/persistence"
-	"go.iondynamics.net/passPad/v1/server"
-	"go.iondynamics.net/passPad/v1/template"
+	"./config"
+	"./filepath"
+	"./passpad/persistence"
+	"./server"
+	"./template"
 )
 
 func Run() {
