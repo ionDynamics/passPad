@@ -1,7 +1,11 @@
 {{define "copyright"}}
-		<footer class="footer">
-			<div class="container">
-				<p class="text-muted" style="float:right;">2015 &copy; ionDynamics.net</p>
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<p class="text-muted text-center">2015 &copy; ionDynamics.net</p>
 			</div>
-		</footer>
+		</div>
+	</div>
+</footer>
 {{end}}

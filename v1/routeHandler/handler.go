@@ -217,18 +217,18 @@ func EntryPost(w http.ResponseWriter, req *http.Request) *webapp.Error {
 }
 
 func VaultPost(w http.ResponseWriter, req *http.Request) *webapp.Error {
+	title := req.FormValue("form-title")
 	description := req.FormValue("form-description")
-	if description == "" {
+	if title == "" {
 		http.Redirect(w, req, "/", http.StatusFound)
 	}
 	if acc := ensureAuth(w, req); acc != nil {
 		identifier := req.FormValue("identifier")
-		err := passpad.UpsertVault(acc, identifier, description)
+		err := passpad.UpsertVault(acc, identifier, title, description)
 		if err != nil {
 			return webapp.Write(err, err.Error(), http.StatusForbidden)
 		}
 		http.Redirect(w, req, "/", http.StatusFound)
 	}
-
 	return nil
 }

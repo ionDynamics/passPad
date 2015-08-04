@@ -6,7 +6,7 @@
 		<label for="input-password" class="sr-only">Passwort</label>
 		<input type="password" id="input-password" name="input-password" class="form-control" placeholder="Passwort" required>
 		<label for="input-token" class="sr-only">Token</label>
-		<input type="text" id="input-token" name="input-token" class="form-control" placeholder="Token" autocomplete="off" required>
+		<input type="text" id="input-token" name="input-token" class="form-control" placeholder="Token" autocomplete="off">
 		<input type="hidden" id="redirect-to" name="redirect-to" value="{{.Data.RedirectTo}}">
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Anmelden</button>
 	</form>
