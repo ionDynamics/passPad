@@ -5,6 +5,7 @@ import (
 	"../passpad"
 	"../passpad/account"
 	"net/http"
+	"time"
 )
 
 func ensureAuth(w http.ResponseWriter, req *http.Request) *account.Account {
@@ -22,6 +23,7 @@ func ensureAuthNoRedirect(w http.ResponseWriter, req *http.Request) *account.Acc
 	if user != nil && pass != nil {
 		acc := passpad.AuthAccount(user.(string), pass.(string))
 		if acc != nil {
+			session.Set("last-access", int32(time.Now().Unix()))
 			return acc
 		}
 	}
