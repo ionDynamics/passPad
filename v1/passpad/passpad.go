@@ -69,9 +69,10 @@ func ValidateAccount(acc *account.Account, token string) error {
 	}
 }
 
-func CreateVault(acc *account.Account, description string) (vault.Vault, string, error) {
+func CreateVault(acc *account.Account, title string, description string) (vault.Vault, string, error) {
 	v := vault.New()
 	v.Access = append(v.Access, acc.User)
+	v.Title = title
 	v.Description = description
 	secret := randGen.String(256)
 	acc.Vaults[v.Identifier] = secret
@@ -103,13 +104,13 @@ func OpenVault(acc *account.Account, identifier string) (vault.Vault, error) {
 	return persistence.GetVault(identifier, secret)
 }
 
-func UpsertVault(acc *account.Account, identifier, description string) error {
+func UpsertVault(acc *account.Account, identifier, title string, description string) error {
 	var v vault.Vault
 	var err error
 	var secret string
 
 	if identifier == "" {
-		v, secret, err = CreateVault(acc, description)
+		v, secret, err = CreateVault(acc, title, description)
 	} else {
 		v, err = OpenVault(acc, identifier)
 	}

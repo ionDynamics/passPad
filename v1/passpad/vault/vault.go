@@ -14,6 +14,7 @@ type Entry struct {
 
 type Vault struct {
 	Identifier  string
+	Title       string
 	Description string
 	Access      []string
 	Entries     map[string]Entry

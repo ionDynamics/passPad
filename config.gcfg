@@ -2,7 +2,7 @@
 Listen = :3001
 CookieSecret = youreallyshouldchangethis
 CookieTimeout = 300
-CookieSecure = true
+CookieSecure = false
 ;Fcgi
 
 [PassPad]

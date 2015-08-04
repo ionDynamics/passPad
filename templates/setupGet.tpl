@@ -1,6 +1,8 @@
 {{template "header" .}}
 {{with .Png}}
-	<img src="data:image/png;base64,{{.}}">
+	<div class="text-center">
+		<img src="data:image/png;base64,{{.}}">
+	</div>
 {{end}}
 	<form class="form-setup pp-login" method="post" action="{{.Action}}">
 		<h2 class="form-setup-heading">Token bestätigen</h2>
