@@ -16,7 +16,11 @@
 		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/js/passpad.js"></script>
 		<title>
-			PassPad
+			{{with .HtmlTitle}}
+				{{.}} | PassPad
+			{{else}}
+				PassPad
+			{{end}}
 		</title>	
 	</head>
 	<body>

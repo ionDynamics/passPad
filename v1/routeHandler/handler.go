@@ -34,7 +34,7 @@ func LoginGet(w http.ResponseWriter, req *http.Request) *webapp.Error {
 		referrer = req.FormValue("referrer")
 	}
 	return template.Execute(w, nil, "loginGet", map[string]string{
-		"HtmlTitle":    "Login PassPad",
+		"HtmlTitle":    "Login",
 		"FlashMessage": "",
 		"Action":       "/v1/login",
 		"RedirectTo":   referrer,
@@ -49,7 +49,7 @@ func LoginPost(w http.ResponseWriter, req *http.Request) *webapp.Error {
 
 	if formUser == "" || formPass == "" {
 		return template.Execute(w, nil, "loginGet", map[string]string{
-			"HtmlTitle":    "Login PassPad",
+			"HtmlTitle":    "Login",
 			"FlashMessage": "Bitte geben Sie Nutzername, Passwort und das aktuelle Token an!",
 			"Action":       "/v1/login",
 		})
@@ -70,7 +70,7 @@ func LoginPost(w http.ResponseWriter, req *http.Request) *webapp.Error {
 					} else {
 						lockdown.Fail(formUser)
 						return template.Execute(w, acc, "loginGet", map[string]string{
-							"HtmlTitle":    "Login PassPad",
+							"HtmlTitle":    "Login",
 							"FlashMessage": "Token ungültig",
 							"Action":       "/v1/login",
 						})
@@ -83,14 +83,14 @@ func LoginPost(w http.ResponseWriter, req *http.Request) *webapp.Error {
 			} else {
 				lockdown.Fail(formUser)
 				return template.Execute(w, acc, "loginGet", map[string]string{
-					"HtmlTitle":    "Login PassPad",
+					"HtmlTitle":    "Login",
 					"FlashMessage": "Nutzername, Passwort ungültig",
 					"Action":       "/v1/login",
 				})
 			}
 		} else {
 			return template.Execute(w, nil, "loginGet", map[string]string{
-				"HtmlTitle":    "Login PassPad",
+				"HtmlTitle":    "Login",
 				"FlashMessage": "Konto temporär gesperrt",
 				"Action":       "/v1/login",
 			})
@@ -120,14 +120,14 @@ func RegisterPost(w http.ResponseWriter, req *http.Request) *webapp.Error {
 
 	if formUser == "" || formPass == "" || formPass2 == "" {
 		return template.Execute(w, nil, "loginGet", map[string]string{
-			"HtmlTitle":    "Registrierung PassPad",
+			"HtmlTitle":    "Registrierung",
 			"FlashMessage": "Bitte geben Sie Nutzername und Passwort an!",
 			"Action":       "/v1/register",
 		})
 	} else {
 		if formPass != formPass2 {
 			return template.Execute(w, nil, "loginGet", map[string]string{
-				"HtmlTitle":    "Registrierung PassPad",
+				"HtmlTitle":    "Registrierung",
 				"FlashMessage": "Passwörter stimmen nicht überein",
 				"Action":       "/v1/register",
 			})
@@ -137,7 +137,7 @@ func RegisterPost(w http.ResponseWriter, req *http.Request) *webapp.Error {
 
 		if err != nil {
 			return template.Execute(w, nil, "loginGet", map[string]string{
-				"HtmlTitle":    "Registrierung PassPad",
+				"HtmlTitle":    "Registrierung",
 				"FlashMessage": "Nutzername ist keine gültige E-Mailadresse",
 				"Action":       "/v1/register",
 			})
@@ -145,7 +145,7 @@ func RegisterPost(w http.ResponseWriter, req *http.Request) *webapp.Error {
 
 		if passpad.AccountExists(formUser) {
 			return template.Execute(w, nil, "loginGet", map[string]string{
-				"HtmlTitle":    "Registrierung PassPad",
+				"HtmlTitle":    "Registrierung",
 				"FlashMessage": "Konto bereits vorhanden",
 				"Action":       "/v1/register",
 			})
@@ -175,7 +175,7 @@ func SetupGet(w http.ResponseWriter, req *http.Request) *webapp.Error {
 			return webapp.Write(err, err.Error(), http.StatusInternalServerError)
 		}
 		return template.Execute(w, nil, "setupGet", map[string]string{
-			"HtmlTitle": "Setup PassPad",
+			"HtmlTitle": "Setup",
 			"Action":    "/v1/setup",
 			"Png":       base64png,
 		})
