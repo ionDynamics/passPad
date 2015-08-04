@@ -13,14 +13,20 @@
 			<tr>
 				<th>Tresorname</th>
 				<th>Beschreibung</th>
+				<th>&nbsp;</th>
 			</tr>
 			{{range .}}
 			<tr>
 				<td>
-					<div><a href="/v1/vault/{{.Identifier}}">{{.Title}}</a></div>
+					<a href="/v1/vault/{{.Identifier}}">{{.Title}}</a>
 				</td>
 				<td>
-					<div>{{.Description}}</div>
+					{{.Description}}
+				</td>
+				<td>
+					<a class="btn btn-default" href="/v1/vault/{{.Identifier}}">
+						<span class="glyphicon glyphicon-folder-open"></span>&nbsp; Öffnen
+					</a>
 				</td>
 			</tr>
 			{{end}}
