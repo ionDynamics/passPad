@@ -44,7 +44,7 @@ func LoginPost(w http.ResponseWriter, req *http.Request) *webapp.Error {
 	formToken := req.FormValue("input-token")
 	redirectTo := req.FormValue("redirect-to")
 
-	if formUser == "" || formPass == "" || formToken == "" {
+	if formUser == "" || formPass == "" {
 		return template.Execute(w, nil, "loginGet", map[string]string{
 			"HtmlTitle":    "Login PassPad",
 			"FlashMessage": "Bitte geben Sie Nutzername, Passwort und das aktuelle Token an!",
@@ -53,20 +53,35 @@ func LoginPost(w http.ResponseWriter, req *http.Request) *webapp.Error {
 	} else {
 		if !lockdown.IsLocked(formUser) {
 			acc := passpad.AuthAccount(formUser, formPass)
-			if acc != nil && passpad.ValidToken(acc, formToken) {
+			if acc != nil {
 				session := sessions.GetSession(req)
-				session.Set("user", formUser)
-				session.Set("pass", formPass)
-				if redirectTo == "" || redirectTo == "/v1/logout" {
-					http.Redirect(w, req, "/", http.StatusFound)
+				if acc.ValidSecret {
+					if passpad.ValidToken(acc, formToken) {
+						session.Set("user", formUser)
+						session.Set("pass", formPass)
+						if redirectTo == "" || redirectTo == "/v1/logout" {
+							http.Redirect(w, req, "/", http.StatusFound)
+						} else {
+							http.Redirect(w, req, redirectTo, http.StatusFound)
+						}
+					} else {
+						lockdown.Fail(formUser)
+						return template.Execute(w, acc, "loginGet", map[string]string{
+							"HtmlTitle":    "Login PassPad",
+							"FlashMessage": "Token ungültig",
+							"Action":       "/v1/login",
+						})
+					}
 				} else {
-					http.Redirect(w, req, redirectTo, http.StatusFound)
+					session.Set("user", formUser)
+					session.Set("pass", formPass)
+					http.Redirect(w, req, "/v1/setup", http.StatusFound)
 				}
 			} else {
 				lockdown.Fail(formUser)
 				return template.Execute(w, acc, "loginGet", map[string]string{
 					"HtmlTitle":    "Login PassPad",
-					"FlashMessage": "Nutzername, Passwort oder Token ungültig",
+					"FlashMessage": "Nutzername, Passwort ungültig",
 					"Action":       "/v1/login",
 				})
 			}
