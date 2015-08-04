@@ -18,7 +18,10 @@ func IndexGet(w http.ResponseWriter, req *http.Request) *webapp.Error {
 			if err != nil {
 				return webapp.Write(err, err.Error(), http.StatusInternalServerError)
 			}
-			return template.Execute(w, acc, "indexGet", vaults)
+			return template.Execute(w, acc, "indexGet", map[string]interface{}{
+				"HtmlTitle": "Meine Tresore",
+				"Vaults":    vaults,
+			})
 		}
 		http.Redirect(w, req, "/v1/setup", http.StatusFound)
 	}
@@ -201,7 +204,10 @@ func EntryGet(w http.ResponseWriter, req *http.Request) *webapp.Error {
 		if err != nil {
 			return webapp.Write(err, err.Error(), http.StatusForbidden)
 		}
-		return template.Execute(w, acc, "entryGet", v)
+		return template.Execute(w, acc, "entryGet", map[string]interface{}{
+			"HtmlTitle": v.Title+": Meine Einträge",
+			"Vault":     v,
+		})
 
 	}
 	return nil

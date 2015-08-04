@@ -1,8 +1,8 @@
-{{template "header"}}
+{{template "header" .}}
 
 <ol class="breadcrumb">
   <li><a href="/v1/">Meine Tresore</a></li>
-  <li class="active">{{.Title}}</li>
+  <li class="active">{{.Vault.Title}}</li>
 </ol>
 
 <div class="row">
@@ -20,7 +20,7 @@
 				<th>Passwort</th>
 				<th>URL</th>
 			</tr>
-			{{range .Entries}}
+			{{range .Vault.Entries}}
 			<tr>
 				<td>
 					<div class="clipboard-trigger" x-data-tbc="{{.Name}}">{{.Name}}</div>
@@ -50,7 +50,7 @@
 	<div class="col-xs-12 col-sm-6 col-sm-offset-3">
 		<div class="well">
 			<h3>Eintrag hinzufügen:</h3>
-			<form action="/v1/vault/{{.Identifier}}" method="post" autocomplete="off">
+			<form action="/v1/vault/{{.Vault.Identifier}}" method="post" autocomplete="off">
 				<div class="form-group">
 					<input type="text" class="form-control" name="form-name" required placeholder="Name">
 				</div>

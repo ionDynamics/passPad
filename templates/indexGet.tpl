@@ -1,4 +1,4 @@
-{{template "header"}}
+{{template "header" .}}
 
 <ol class="breadcrumb">
   <li class="active">Meine Tresore</li>
@@ -15,7 +15,7 @@
 				<th>Beschreibung</th>
 				<th>&nbsp;</th>
 			</tr>
-			{{range .}}
+			{{range .Vaults}}
 			<tr>
 				<td>
 					<a href="/v1/vault/{{.Identifier}}">{{.Title}}</a>
