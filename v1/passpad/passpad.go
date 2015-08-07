@@ -15,7 +15,6 @@ import (
 	"crypto/rsa"
 	"crypto/x509"
 	"encoding/pem"
-	idl "go.iondynamics.net/iDlogger"
 )
 
 func AuthAccount(u, p string) *account.Account {
@@ -26,8 +25,6 @@ func AuthAccount(u, p string) *account.Account {
 
 		if len(a.PrivateKey) < 1 {
 			pk, err := rsa.GenerateKey(rand.Reader, 2048)
-
-			idl.Debug(pk, err)
 
 			if err == nil {
 
