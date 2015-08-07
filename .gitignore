@@ -27,3 +27,4 @@ _testmain.go
 *.sublime-workspace
 *.sublime-project
 projects.cson
+bolt.db
