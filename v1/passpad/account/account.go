@@ -7,5 +7,5 @@ type Account struct {
 	ValidSecret   bool
 	RecoveryCodes []string
 	Vaults        map[string]string
-	PrivateKey    string
+	PrivateKey    []byte
 }
