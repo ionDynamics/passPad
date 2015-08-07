@@ -11,6 +11,9 @@ import (
 	"go.iondynamics.net/passPad/v1/passpad/persistence"
 	"go.iondynamics.net/passPad/v1/passpad/vault"
 	"image/png"
+	"rand"
+	"crypto/rsa"
+	idl "go.iondynamics.net/iDlogger"
 )
 
 func AuthAccount(u, p string) *account.Account {
@@ -18,6 +21,24 @@ func AuthAccount(u, p string) *account.Account {
 	if err != nil {
 		return nil
 	} else {
+
+		idl.Debug("PrivateKey:", a.PrivateKey)
+		idl.Debug("PublicKey:", a.PublicKey)
+
+		if a.PrivateKey == "" {
+			pk, err := rsa.GenerateKey(rand.Reader, 4096)
+
+			if err != nil {
+				a.PrivateKey := pk
+				persistence.SetAccount(a.User, a)
+
+				var publickey *rsa.PublicKey
+         		publickey = &privatekey.PublicKey
+
+				persistence.SetPublicKey(a.User, publickey)
+			}
+		}
+
 		return a
 	}
 }
