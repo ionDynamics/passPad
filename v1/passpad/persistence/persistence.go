@@ -99,6 +99,38 @@ func GetAccount(id, pass string) (*account.Account, error) {
 	return a, err
 }
 
+func GetPublicKey(id string) (string, error) {
+
+	var publicKey string
+
+	err := db.View(func(tx *bolt.Tx) error {
+		publicKeys := tx.Bucket([]byte("public_keys"))
+		if (publicKeys == nil) {
+			return errors.New("no public keys bucket")
+		}
+		byt := publicKeys.Get([]byte(id))
+		if len(byt) < 1 {
+			return errors.New("no such public key")
+		}
+		publicKey = string(byt)
+		return nil
+	})
+	
+	return publicKey, err
+}
+
+func SetPublicKey(id string, publicKey string) error {
+	return db.Update(func(tx *bolt.Tx) error {
+
+		publicKeys, err := tx.CreateBucketIfNotExists([]byte("public_keys"))
+		if err != nil {
+			return err
+		}
+
+		return publicKeys.Put([]byte(id), []byte(publicKey))
+	})
+}
+
 func AccountExists(name string) bool {
 	ret := false
 	db.View(func(tx *bolt.Tx) error {
