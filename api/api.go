@@ -1,20 +1,20 @@
-package passpad
+package api
 
 import (
 	"bytes"
-	"encoding/base64"
-	"errors"
-	"github.com/pquerna/otp/totp"
-	"go.iondynamics.net/iDhelper/randGen"
-	"go.iondynamics.net/passPad/v1/config"
-	"go.iondynamics.net/passPad/v1/passpad/account"
-	"go.iondynamics.net/passPad/v1/passpad/persistence"
-	"go.iondynamics.net/passPad/v1/passpad/vault"
-	"image/png"
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
+	"encoding/base64"
 	"encoding/pem"
+	"errors"
+	"github.com/pquerna/otp/totp"
+	"go.iondynamics.net/iDhelper/randGen"
+	"go.iondynamics.net/passPad/account"
+	"go.iondynamics.net/passPad/config"
+	"go.iondynamics.net/passPad/persistence"
+	"go.iondynamics.net/passPad/vault"
+	"image/png"
 )
 
 func AuthAccount(u, p string) *account.Account {
@@ -29,7 +29,7 @@ func AuthAccount(u, p string) *account.Account {
 			if err == nil {
 
 				a.PrivateKey = pem.EncodeToMemory(&pem.Block{
-					Type: "RSA PRIVATE KEY",
+					Type:  "RSA PRIVATE KEY",
 					Bytes: x509.MarshalPKCS1PrivateKey(pk),
 				})
 
@@ -38,7 +38,7 @@ func AuthAccount(u, p string) *account.Account {
 				pubASN1, _ := x509.MarshalPKIXPublicKey(&pk.PublicKey)
 
 				publicKey := pem.EncodeToMemory(&pem.Block{
-					Type: "RSA PUBLIC KEY",
+					Type:  "RSA PUBLIC KEY",
 					Bytes: pubASN1,
 				})
 

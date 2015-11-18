@@ -4,7 +4,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"go.iondynamics.net/passPad/v1/config"
+	"go.iondynamics.net/passPad/config"
 )
 
 func GetPath(file string) string {

@@ -7,8 +7,9 @@ import (
 	"github.com/boltdb/bolt"
 	"go.iondynamics.net/iDhelper/crypto"
 	"go.iondynamics.net/iDlogger"
-	"go.iondynamics.net/passPad/v1/passpad/account"
-	"go.iondynamics.net/passPad/v1/passpad/vault"
+
+	"go.iondynamics.net/passPad/account"
+	"go.iondynamics.net/passPad/vault"
 )
 
 var db *bolt.DB
@@ -105,7 +106,7 @@ func GetPublicKey(id string) (string, error) {
 
 	err := db.View(func(tx *bolt.Tx) error {
 		publicKeys := tx.Bucket([]byte("public_keys"))
-		if (publicKeys == nil) {
+		if publicKeys == nil {
 			return errors.New("no public keys bucket")
 		}
 		byt := publicKeys.Get([]byte(id))
@@ -115,7 +116,7 @@ func GetPublicKey(id string) (string, error) {
 		publicKey = string(byt)
 		return nil
 	})
-	
+
 	return publicKey, err
 }
 

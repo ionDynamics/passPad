@@ -1,14 +1,16 @@
 package routeHandler
 
 import (
-	"github.com/goincremental/negroni-sessions"
-	"github.com/gorilla/mux"
-	"go.iondynamics.net/passPad/v1/passpad"
-	"go.iondynamics.net/passPad/v1/passpad/lockdown"
-	"go.iondynamics.net/passPad/v1/template"
-	"go.iondynamics.net/webapp"
 	"net/http"
 	"net/mail"
+
+	"github.com/goincremental/negroni-sessions"
+	"github.com/gorilla/mux"
+	"go.iondynamics.net/webapp"
+
+	passpad "go.iondynamics.net/passPad/api"
+	"go.iondynamics.net/passPad/lockdown"
+	"go.iondynamics.net/passPad/template"
 )
 
 func IndexGet(w http.ResponseWriter, req *http.Request) *webapp.Error {
@@ -205,7 +207,7 @@ func EntryGet(w http.ResponseWriter, req *http.Request) *webapp.Error {
 			return webapp.Write(err, err.Error(), http.StatusForbidden)
 		}
 		return template.Execute(w, acc, "entryGet", map[string]interface{}{
-			"HtmlTitle": v.Title+": Meine Einträge",
+			"HtmlTitle": v.Title + ": Meine Einträge",
 			"Vault":     v,
 		})
 

@@ -1,11 +1,13 @@
 package routeHandler
 
 import (
-	"github.com/goincremental/negroni-sessions"
-	"go.iondynamics.net/passPad/v1/passpad"
-	"go.iondynamics.net/passPad/v1/passpad/account"
 	"net/http"
 	"time"
+
+	"github.com/goincremental/negroni-sessions"
+
+	"go.iondynamics.net/passPad/account"
+	passpad "go.iondynamics.net/passPad/api"
 )
 
 func ensureAuth(w http.ResponseWriter, req *http.Request) *account.Account {

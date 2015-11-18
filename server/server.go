@@ -1,18 +1,19 @@
 package server
 
 import (
-	"github.com/codegangsta/negroni"
-	"github.com/goincremental/negroni-sessions"
-	"github.com/goincremental/negroni-sessions/cookiestore"
 	"net"
 	"net/http"
 	"net/http/fcgi"
 
+	"github.com/GeertJohan/go.rice"
+	"github.com/codegangsta/negroni"
+	"github.com/goincremental/negroni-sessions"
+	"github.com/goincremental/negroni-sessions/cookiestore"
 	idl "go.iondynamics.net/iDlogger"
 	"go.iondynamics.net/iDnegroniLog"
 
-	"go.iondynamics.net/passPad/v1/config"
-	"go.iondynamics.net/passPad/v1/router"
+	"go.iondynamics.net/passPad/config"
+	"go.iondynamics.net/passPad/router"
 )
 
 func preflight(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
@@ -24,7 +25,7 @@ func Listen() {
 
 	logger.Stack2Http = config.Std.PassPad.DevelopmentEnv
 
-	n := negroni.New(logger, negroni.NewStatic(http.Dir("public")))
+	n := negroni.New(logger, negroni.NewStatic(rice.MustFindBox("../public").HTTPBox()))
 
 	cookiestore := cookiestore.New([]byte(config.Std.Http.CookieSecret))
 	cookiestore.Options(sessions.Options{MaxAge: config.Std.Http.CookieTimeout, Secure: config.Std.Http.CookieSecure})

@@ -4,8 +4,9 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	handler "go.iondynamics.net/passPad/v1/routeHandler"
 	"go.iondynamics.net/webapp"
+
+	handler "go.iondynamics.net/passPad/routeHandler"
 )
 
 func New() *mux.Router {
@@ -31,6 +32,6 @@ func provision(r *mux.Router) *mux.Router {
 	v1Post.Handle("/setup", webapp.Handler(handler.SetupPost))
 	v1Post.Handle("/vault", webapp.Handler(handler.VaultPost))
 	v1Post.Handle("/vault/{identifier}", webapp.Handler(handler.EntryPost))
-
+ 
 	return r
 }
